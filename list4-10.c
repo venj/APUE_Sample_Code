@@ -5,6 +5,8 @@
 // Can not compile under OSX Mountain Lion, 
 // so copy the macros from /usr/local/sys/types.h 
 // Why not compile??? 
+// And looks like, major/minor macro for special file's st_dev
+// is not correct. Why???
 #define	major(x)	((int32_t)(((u_int32_t)(x) >> 24) & 0xff))
 #define	minor(x)	((int32_t)((x) & 0xffffff))
 

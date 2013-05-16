@@ -7,6 +7,7 @@ static Myfunc myfunc;
 static int myftw(char *, Myfunc *);
 static int dopath(Myfunc *);
 static long nreg, ndir, nblk, nchr, nfifo, nslink, nsock, ntot;
+static char *fullpath;
 
 int main (int argc, char const *argv[])
 {
@@ -24,7 +25,7 @@ int main (int argc, char const *argv[])
     printf("FIFOs          = %7ld, %5.2f %%\n", nfifo, nfifo * 100.0/ntot);
     printf("symbolic links = %7ld, %5.2f %%\n", nslink, nslink * 100.0/ntot);
     printf("sockets        = %7ld, %5.2f %%\n", nsock, nsock * 100.0/ntot);
-    
+    free(fullpath);
     return 0;
 }
 
@@ -33,7 +34,6 @@ int main (int argc, char const *argv[])
 #define FTW_DNR 3
 #define FTW_NS 4
 
-static char *fullpath;
 static int myftw(char *pathname, Myfunc* func) {
     int len;
     fullpath = path_alloc(&len);
